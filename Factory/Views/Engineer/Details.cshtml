@@ -1,0 +1,31 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer;
+
+<h2>Engineer Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.EName): @Html.DisplayFor(model => model.EName)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This engineer has no accessability to machines</p>
+}
+else
+{
+  <h4>Engineer Info:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Machine.MName</li>
+  }
+  </ul>
+
+	<h4>Years of Experience:</h4>
+	<p>@Html.DisplayNameFor(model => model.EExperience): @Html.DisplayFor(model => model.EExperience)</p>
+}
+
+<p>@Html.ActionLink("Back to engineers", "Index")</p>
+<p>@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EId })</p>
+<p>@Html.ActionLink("Delete", "Delete", new { id = Model.EId })</p>

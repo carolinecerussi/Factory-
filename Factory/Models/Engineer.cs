@@ -15,7 +15,7 @@ namespace Factory.Models
 
 		public string EExperience {get;set;}
 
-		public virtual ICollection<EngineerMachine> JoinEntities {get;set}
+		public virtual ICollection<EngineerMachine> JoinEntities {get;set;}
 	}
 
 }

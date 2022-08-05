@@ -47,13 +47,13 @@ namespace Factory.Controllers
 	[HttpPost]
 	public ActionResult Edit(Engineer engineer, int MId)
 	{
-		if (MId != 0 && _db.EngineerMachine.FirstOrDefault(_db => _db.MId == MId && _db.EId == engineer.EId == null)
+		if (MId != 0 && _db.EngineerMachine.FirstOrDefault(_d => _d.MId == MId && _d.EId == engineer.EId) == null)
 		{
 			_db
 				.EngineerMachine
 				.Add(new EngineerMachine
 				{
-					MId = MId, EId = engineer.EId});
+					MId = MId, EId = engineer.EId}); 
 				_db.SaveChanges();
 			}
 
@@ -91,7 +91,7 @@ namespace Factory.Controllers
 				return View(thisEngineer);
 			}
 			[HttpPost, ActionName("Delete")]
-			public ActionResult DeleteConfirmed(in id)
+			public ActionResult DeleteConfirmed(int id)
 			{
 				var thisEngineer = 
 				_db.Engineers.FirstOrDefault(engineer=> engineer.EId == id);
