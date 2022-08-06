@@ -5,28 +5,18 @@ using Microsoft.Extensions.Configuration;
 
 namespace Factory.Models
 {
-  public class
-  FactoryContextFactory
-  : IDesignTimeDbContextFactory<FactoryContext>
+  public class FactoryContextFactory:IDesignTimeDbContextFactory<FactoryContext>
   {
-    
-		FactoryContext
-    IDesignTimeDbContextFactory<FactoryContext>.CreateDbContext(
-        string[] args
-    )
+		FactoryContext IDesignTimeDbContextFactory<FactoryContext>.CreateDbContext(string[] args)
     {
-      IConfigurationRoot configuration =
-          new ConfigurationBuilder()
-              .SetBasePath(Directory.GetCurrentDirectory())
-              .AddJsonFile("appsettings.json")
-              .Build();
+      IConfigurationRoot configuration = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+          .AddJsonFile("appsettings.json")
+          .Build();
 
       var builder = new DbContextOptionsBuilder<FactoryContext>();
 
-      builder
-          .UseMySql(configuration["ConnectionStrings:DefaultConnection"],
-          ServerVersion
-              .AutoDetect(configuration["ConnectionStrings:DefaultConnection"]));
+      builder.UseMySql(configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(configuration["ConnectionStrings:DefaultConnection"]));
 
       return new FactoryContext(builder.Options);
     }

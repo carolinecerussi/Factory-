@@ -25,13 +25,9 @@ namespace Factory
     {
       services.AddMvc();
 
-      services
-          .AddEntityFrameworkMySql()
-          .AddDbContext<FactoryContext>(options =>
-              options
-                  .UseMySql(Configuration["ConnectionStrings:DefaultConnection"],
-                  ServerVersion
-                      .AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
+      services.AddEntityFrameworkMySql()
+        .AddDbContext<FactoryContext>(options =>options.UseMySql(Configuration["ConnectionStrings:DefaultConnection"],
+        ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
     }
 
     public void Configure(IApplicationBuilder app)
@@ -39,18 +35,14 @@ namespace Factory
       app.UseDeveloperExceptionPage();
       app.UseRouting();
 
-      app
-          .UseEndpoints(routes =>
+      app.UseEndpoints(routes =>
           {
-            routes
-                      .MapControllerRoute("default",
-                      "{controller=Home}/{action=Index}/{id?}");
-          });
+          routes.MapControllerRoute("default","{controller=Home}/{action=Index}/{id?}");
+      });
 
       app.UseStaticFiles();
 
-      app
-          .Run(async (context) =>
+      app.Run(async (context) =>
           {
             await context.Response.WriteAsync("Hello World!");
           });

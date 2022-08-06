@@ -35,7 +35,10 @@ namespace Factory.Controllers
 
 		public ActionResult Details(int id)
 		{
-			var thisEngineer = _db.Engineers.Include(engineer=> engineer.JoinEntities).ThenInclude(join => join.Machine).FirstOrDefault(engineer=> engineer.EId == id);
+			var thisEngineer = _db.Engineers
+			.Include(engineer=> engineer.JoinEntities)
+			.ThenInclude(join => join.Machine)
+			.FirstOrDefault(engineer=> engineer.EId == id);
 			return View(thisEngineer);
 		}
 		public ActionResult Edit(int id)
@@ -62,7 +65,7 @@ namespace Factory.Controllers
 		return RedirectToAction("Index");
 
 		}
-		public ActionResult AddMachine(int id)
+		public ActionResult AddM(int id)
 		{
 			var thisEngineer =
 			_db.Engineers.FirstOrDefault(engineer => engineer.EId == id );
@@ -71,7 +74,7 @@ namespace Factory.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult AddMachine(Engineer engineer, int MId)
+		public ActionResult AddM(Engineer engineer, int MId)
 		{
 			if (MId !=0)
 			{

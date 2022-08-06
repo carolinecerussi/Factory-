@@ -1,2 +1,5 @@
-**/bin/*
-**/obj/*
+*/obj/
+*/bin/
+*/appsettings.json
+*.DS_Store
+*/.config/
