@@ -2,15 +2,15 @@
   Layout = "_Layout";
 }
 
-@model Factory.Models.Machine
+@model Factory.Models.Engineer
 
 <h2>Add a Machine</h2>
 
-<h4>Add a Machine to this Engineer's Experience: @Html.DisplayFor(model => model.MName)</h4>
+<h4>Add a Machine to this Engineer's Experience: @Html.DisplayFor(model => model.EName)</h4>
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.MId)
+    @Html.HiddenFor(model => model.EId)
 
     @Html.Label("Add Machine")
     @Html.DropDownList("MId")

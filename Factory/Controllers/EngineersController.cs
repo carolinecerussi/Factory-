@@ -35,10 +35,7 @@ namespace Factory.Controllers
 
 		public ActionResult Details(int id)
 		{
-			var thisEngineer = _db.Engineers
-			.Include(engineer=> engineer.JoinEntities)
-			.ThenInclude(join => join.Machine)
-			.FirstOrDefault(engineer=> engineer.EId == id);
+			var thisEngineer = _db.Engineers.Include(engineer=> engineer.JoinEntities).ThenInclude(join => join.Machine).FirstOrDefault(engineer=> engineer.EId == id);
 			return View(thisEngineer);
 		}
 		public ActionResult Edit(int id)
@@ -55,8 +52,7 @@ namespace Factory.Controllers
 			_db
 				.EngineerMachine
 				.Add(new EngineerMachine
-				{
-					MId = MId, EId = engineer.EId}); 
+				{MId = MId, EId = engineer.EId}); 
 				_db.SaveChanges();
 			}
 
